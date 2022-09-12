@@ -11,7 +11,7 @@ export function SearchForm() {
 
   const handleFormSubmit = (data) => {
     console.log(data.caseId);
-    fetch(`/records/${data.caseId}`, {})
+    fetch(`/invoices/${data.date}&${data.hospital}`, {})
       .then((response) => response.json())
       .then((responseJson) => {
         setRecord(responseJson);
@@ -22,11 +22,15 @@ export function SearchForm() {
   return (
     <div className="case-id-form">
       <p>
-        Welcome to VetCT's client interface. Please enter your case ID for full
-        details on your case
+        Welcome to VetCT's client interface. Please enter your hospital name and the billing period to get your invoice"
       </p>
       <form onSubmit={handleSubmit(handleFormSubmit)}>
-        <input {...register("caseId")} placeholder="Case ID" />
+        <input {...register("hospital")} placeholder="Hospital Name" />
+        <select {...register("date")}>
+        <option value="2022-03">March 2022</option>
+        <option value="2022-04">April 2022</option>
+        <option value="2022-05">May 2022</option>
+      </select>
         <input type="submit" />
       </form>
       {record[0].CASEID != "" && (
