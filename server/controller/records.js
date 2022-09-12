@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const Record = require ("../model/Record");
 
-
-router.get("/", (req, res) => {
-  // code to check route is working initially
-    console.log("RECORDS");
-    res.send("RECORDS");
+router.get("/:id", (req, res) => {
+  const record = new Record();
+  const result = record.getCaseById(req.params.id) // hardcoded for now
+  console.log(result);
+  res.send(result);
 });
 
 module.exports = router;

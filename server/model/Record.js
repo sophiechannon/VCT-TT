@@ -1,6 +1,6 @@
 let csvToJson = require('convert-csv-to-json');
 
-class Records {
+class Record {
   constructor() {
     this.recordsAsJson = [];
   }
@@ -20,4 +20,4 @@ class Records {
   }
 }
 
-module.exports = Records;
+module.exports = Record;
