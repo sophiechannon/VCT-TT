@@ -13,4 +13,12 @@ describe("getJson", () => {
     expect(result[0].PATIENT).toEqual("Michele Roberts");
     expect(result.length).toEqual(1);
   });
+
+  it("returns all invoices in a particular month for a client", () => {
+    const records = new Record();
+    const result = records.getInvoiceByMonthAndClient("2022-03", "Magic Vets");
+    expect(result[0].PATIENT).toEqual("Michele Roberts");
+    expect(result.length).toEqual(9);
+  });
+
 });
