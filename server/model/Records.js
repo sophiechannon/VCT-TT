@@ -11,6 +11,10 @@ class Records {
     return this.recordsAsJson;
   }
 
+  getCaseById(caseId) {
+    return this.getRecordsAsJson().filter(record => record.CASEID == caseId)
+  }
+
   #parseCSV() {
     this.recordsAsJson = csvToJson.fieldDelimiter(',').getJsonFromCsv(__dirname+"/data.csv");
   }
