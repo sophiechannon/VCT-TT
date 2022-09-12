@@ -1,5 +1,24 @@
 # Technical Test
 
+## How to run
+
+The client is hosted on port 3000
+The server is hosted on port 8000
+
+````console
+cd server
+nodemon server.js
+cd ../client
+npm start
+````
+
+To run tests
+
+````console
+cd server
+jest
+````
+
 ## Background
 VetCT is a leading teleradiology and teleconsulting provider to the veterinary industry.
 
