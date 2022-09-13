@@ -1,19 +1,16 @@
-const csv = require("csvtojson");
-// const csvToJson = require('convert-csv-to-json');
+// const csv = require("csvtojson");
+const csvToJson = require('convert-csv-to-json');
 
 class Record {
-  constructor() {
-    this.recordsAsJson = [];
-  }
-
   getRecordsAsJson() {
-    let result;
-    csv()
-      .fromFile(__dirname + "/data.csv")
-      .then((jsonObj) => {
-        result = jsonObj;
-      });
-    return result;
+    // let result;
+    // csv()
+    //   .fromFile(__dirname + "/data.csv")
+    //   .then((jsonObj) => {
+    //     result = jsonObj;
+    //   });
+    // return result;
+    return csvToJson.fieldDelimiter(',').getJsonFromCsv(__dirname+"/data.csv");
   }
 
   getCaseById(caseId) {
@@ -28,10 +25,6 @@ class Record {
       record.FIRSTCLOSUREDATE.includes(month)
     );
   }
-
-  // #parseCSV() {
-  //   this.recordsAsJson = csvToJson.fieldDelimiter(',').getJsonFromCsv(__dirname+"/data.csv");
-  // }
 }
 
 module.exports = Record;

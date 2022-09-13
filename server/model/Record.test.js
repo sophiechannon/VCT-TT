@@ -4,8 +4,7 @@ describe("getJson", () => {
   
   it("returns CSV file as JSON", () => {
     const records = new Record();
-    console.log(records.getRecordsAsJson())
-    expect(records.getRecordsAsJson()).toEqual("487916");
+    expect(records.getRecordsAsJson()[0].ISSUE_ID).toEqual("487916");
   });
 
   // it("returns a specific records from JSON file", () => {
