@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export function SearchForm() {
   const { register, handleSubmit } = useForm();
-  const [record, setRecord] = useState([{ CASEID: "",
+  const [records, setRecord] = useState([{ CASEID: "",
                                           PATIENT: "",
                                           OWNER: "",
-                                          HOSPITAL: "",
+                                          PRICEBEFOREDISCOUNT: "",
+                                          PRICEAFTERDISCOUNT: "",
+                                          CURRENCY: "",
                                           SPECIES: ""}]);
 
   const handleFormSubmit = (data) => {
@@ -33,14 +35,17 @@ export function SearchForm() {
       </select>
         <input type="submit" />
       </form>
-      {record[0].CASEID != "" && (
+      {records[0].CASEID != "" && (
+        records.map((record) => (
         <div className="record-info">
-          <div id="patient-name">Case ID: {record[0].CASEID}</div>
-          <div id="patient-name">Patient: {record[0].PATIENT}</div>
-          <div id="patient-name">Species: {record[0].SPECIES}</div>
-          <div id="patient-name">Owner: {record[0].OWNER}</div>
-          <div id="patient-name">Hospital: {record[0].HOSPITAL}</div>
+          <div id="case-id">Case ID: {record.CASEID}</div>
+          <div id="patient-name">Patient: {record.PATIENT}</div>
+          <div id="species">Species: {record.SPECIES}</div>
+          <div id="owner">Owner: {record.OWNER}</div>
+          <div id="price-before-discount">Price before discount: {record.PRICEAFTERDISCOUNT} {record.CURRENCY}</div>
+          <div id="price-after-discount">Price after discount: {record.PRICEAFTERDISCOUNT} {record.CURRENCY}</div>
         </div>
+        ))
       )}
     </div>
   );

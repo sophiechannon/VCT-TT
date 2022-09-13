@@ -1,4 +1,5 @@
-let csvToJson = require("convert-csv-to-json");
+const csv = require("csvtojson");
+// const csvToJson = require('convert-csv-to-json');
 
 class Record {
   constructor() {
@@ -6,9 +7,13 @@ class Record {
   }
 
   getRecordsAsJson() {
-    // ensures most up to date results are stored
-    this.#parseCSV();
-    return this.recordsAsJson;
+    let result;
+    csv()
+      .fromFile(__dirname + "/data.csv")
+      .then((jsonObj) => {
+        result = jsonObj;
+      });
+    return result;
   }
 
   getCaseById(caseId) {
@@ -19,16 +24,14 @@ class Record {
     let allClient = this.getRecordsAsJson().filter(
       (record) => record.HOSPITAL == client
     );
-    return allClient.filter(
-      (record) => record.FIRSTCLOSUREDATE.includes(month)
+    return allClient.filter((record) =>
+      record.FIRSTCLOSUREDATE.includes(month)
     );
   }
 
-  #parseCSV() {
-    this.recordsAsJson = csvToJson
-      .fieldDelimiter(",")
-      .getJsonFromCsv(__dirname + "/data.csv");
-  }
+  // #parseCSV() {
+  //   this.recordsAsJson = csvToJson.fieldDelimiter(',').getJsonFromCsv(__dirname+"/data.csv");
+  // }
 }
 
 module.exports = Record;
